@@ -1,3 +1,4 @@
 .env
 .venv
+.streamlit
 sql_lite_database.db
