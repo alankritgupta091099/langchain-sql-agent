@@ -19,7 +19,7 @@ openai_api_key = st.secrets["OPENAI_API_KEY"]
 db = SQLDatabase.from_uri("sqlite:///sql_lite_database.db")
 
 # Choose the OpenAI model
-llm = OpenAI(temperature=0, openai_api_key=openai_api_key)
+llm = OpenAI(model_name="gpt-3.5-turbo", temperature=0, openai_api_key=openai_api_key)
 
 # Setup agent
 toolkit = SQLDatabaseToolkit(db=db, llm=llm)
