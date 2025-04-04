@@ -11,6 +11,16 @@ if "request_count" not in st.session_state:
 
 # Streamlit UI
 st.title("SQL Query Agent with OpenAI")
+st.write("This app allows you to ask questions in natural language to query a SQLite database using OpenAI's language model.")
+st.image("./uml.jpeg", caption="[Database UML class diagram (w3resource)](https://www.w3resource.com/sql/sql-table.php?id=-1)", use_container_width=True)
+
+st.markdown("_Note: Only two queries are allowed so OpenAI won't make me broke :)_")
+
+st.markdown("### Sample Queries:")
+st.markdown("1. Find the total order amount for each customer")
+st.markdown("2. Find customers with outstanding amounts above a threshold")
+st.markdown("3. Get orders by working area")
+st.markdown("4. Find agents handling orders above 2000")
 
 # Fetch OpenAI API Key from Streamlit secrets
 openai_api_key = st.secrets["OPENAI_API_KEY"]
@@ -19,7 +29,7 @@ openai_api_key = st.secrets["OPENAI_API_KEY"]
 db = SQLDatabase.from_uri("sqlite:///sql_lite_database.db")
 
 # Choose the OpenAI model
-llm = OpenAI(model_name="gpt-3.5-turbo", temperature=0, openai_api_key=openai_api_key)
+llm = OpenAI(temperature=0, openai_api_key=openai_api_key)
 
 # Setup agent
 toolkit = SQLDatabaseToolkit(db=db, llm=llm)
